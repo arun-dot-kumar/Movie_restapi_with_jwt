@@ -24,7 +24,7 @@
 ## for build and runniing application.
 ```bash
 go build -o movie .
-./movie
+./movie -instance
 ```
 
 # Running Locally using Docker

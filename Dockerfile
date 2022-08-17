@@ -17,4 +17,4 @@ EXPOSE 4567
 
 # Run the binary`
 
-CMD ["./movie"]
+ENTRYPOINT ["./movie","-container"]
