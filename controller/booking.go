@@ -14,15 +14,15 @@ import (
 )
 
 type Showlist struct {
-	ShowName      string `json:"showName"`
-	NumberOfSeats int    `json:"numberOfSeats"`
-	A1Row         string `json:"a1Row"`
-	B1Row         string `json:"b1Row"`
-	C1Row         string `json:"c1Row"`
-	ShowTime      string `json:"showTime"`
-	GoldClass     int    `json:"gold_class"`
-	Balcony       int    `json:"balcony"`
-	FirstClass    int    `json:"first_class"`
+	ShowName         string `json:"showName"`
+	NumberOfSeats    int    `json:"numberOfSeats"`
+	GoldenclassSeats string `json:"goldenclassSeats"`
+	BalnconySeats    string `json:"balnconySeats"`
+	FirstclassSeats  string `json:"firstclassSeats"`
+	ShowTime         string `json:"showTime"`
+	GoldClassPrice   int    `json:"goldClassPrice"`
+	BalconyPrice     int    `json:"balconyPrice"`
+	FirstClassPrice  int    `json:"firstClassPrice"`
 }
 
 func getSeatsLIstByRow(show models.Show) ([]int, []int, []int, map[int]string, map[int]string, map[int]string) {
@@ -61,34 +61,34 @@ func GetShows(context *gin.Context) {
 	}
 	for i, j := range show {
 		var temp Showlist
-		temp.GoldClass = 250
-		temp.Balcony = 200
-		temp.FirstClass = 200
+		temp.GoldClassPrice = 250
+		temp.BalconyPrice = 200
+		temp.FirstClassPrice = 150
 		temp.ShowName = j.ShowName
 		temp.NumberOfSeats = j.NumberOfSeats
 		temp.ShowTime = j.ShowTime
 		sorted_a_rows, sorted_b_rows, sorted_c_rows, a_rows, b_rows, c_rows := getSeatsLIstByRow(show[i])
 		for i := 0; i < len(sorted_a_rows); i++ {
-			if temp.A1Row == "" {
-				temp.A1Row = a_rows[sorted_a_rows[i]]
+			if temp.GoldenclassSeats == "" {
+				temp.GoldenclassSeats = a_rows[sorted_a_rows[i]]
 			} else {
-				temp.A1Row += "," + a_rows[sorted_a_rows[i]]
+				temp.GoldenclassSeats += "," + a_rows[sorted_a_rows[i]]
 
 			}
 		}
 		for i := 0; i < len(sorted_b_rows); i++ {
-			if temp.B1Row == "" {
-				temp.B1Row = b_rows[sorted_b_rows[i]]
+			if temp.BalnconySeats == "" {
+				temp.BalnconySeats = b_rows[sorted_b_rows[i]]
 			} else {
-				temp.B1Row += "," + b_rows[sorted_b_rows[i]]
+				temp.BalnconySeats += "," + b_rows[sorted_b_rows[i]]
 
 			}
 		}
 		for i := 0; i < len(sorted_c_rows); i++ {
-			if temp.C1Row == "" {
-				temp.C1Row = c_rows[sorted_c_rows[i]]
+			if temp.FirstclassSeats == "" {
+				temp.FirstclassSeats = c_rows[sorted_c_rows[i]]
 			} else {
-				temp.C1Row += "," + c_rows[sorted_c_rows[i]]
+				temp.FirstclassSeats += "," + c_rows[sorted_c_rows[i]]
 
 			}
 		}
@@ -186,10 +186,13 @@ func BookMovie(context *gin.Context) {
 	}
 	if len(unavaiable_seats) == 0 {
 		for _, val := range booking_seats {
-			if strings.HasPrefix(val, "A") || strings.HasPrefix(val, "B") {
+			if strings.HasPrefix(val, "A") {
 				bookedlist.Price += 250
-			} else {
+			}
+			if strings.HasPrefix(val, "B") {
 				bookedlist.Price += 200
+			} else {
+				bookedlist.Price += 150
 			}
 		}
 		bookingStatus := database.Instance.Create(&bookedlist)

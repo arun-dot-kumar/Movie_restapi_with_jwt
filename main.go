@@ -38,7 +38,7 @@ func initRouter() *gin.Engine {
 		secured := api.Group("/movie").Use(middlewares.Auth())
 		{
 			secured.POST("/admin/addShow", controllers.AddMovie)
-			secured.POST("/getshows", controllers.GetShows)
+			secured.GET("/getshows", controllers.GetShows)
 			secured.POST("/user/bookmovie", controllers.BookMovie)
 			secured.GET("/admin/getbookings", controllers.Getbookings)
 		}

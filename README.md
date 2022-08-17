@@ -27,14 +27,15 @@ go build -o movie .
 ./movie
 ```
 
-
-
-
 # Running Locally using Docker
 
 ```bash
 docker-compose up
 ```
+# Documentation
+
+* [API Docs](docs/api-docs/index.md)
+
 
 access site on: http://localhost:4567/
 
