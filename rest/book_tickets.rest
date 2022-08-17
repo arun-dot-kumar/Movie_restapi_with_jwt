@@ -1,0 +1,15 @@
+// Register User
+POST http://localhost:4567/movie/user/bookmovie HTTP/1.1
+content-type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFydW4iLCJlbWFpbCI6InRlc3R1c2VyQGdtYWlsLmNvbSIsImV4cCI6MTY2MDcyOTg2OX0.KsV5xSI-VepH6UhzcdY4gs2bZG3TXKRkf6jt5WqziYE
+
+{
+    "userName": "arun",
+    "email": "testuser@gmail.com",
+    "showName": "charlie",
+    "numOfSeats": 2,
+    "seats": "A1,B1",
+    "showTime": "10:00 AM"
+}
+
+###

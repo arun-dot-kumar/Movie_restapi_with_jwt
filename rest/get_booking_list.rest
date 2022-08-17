@@ -1,0 +1,5 @@
+// Register User
+GET http://localhost:4567/movie/admin/getbookings HTTP/1.1
+content-type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFydW4iLCJlbWFpbCI6InRlc3R1c2VyQGdtYWlsLmNvbSIsImV4cCI6MTY2MDcyMzk4M30.M3rooCC2cyvr-NriNJatIHNAonzzUiR3YIWWYy2Uuis
+###
